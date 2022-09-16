@@ -2,13 +2,13 @@ package index.bptree;
 
 import java.util.*;
 
-public class BPlusTree<Key extends Comparable, Value> {
+public class BPlusTree<Key extends Comparable<? super Key>, Value> {
 
 
         /* M is the maximum number of keys in the inner node */
-        private int M;
+        private final int M;
         /* N is the maximum number of keys in the leaf node */
-        private int N;
+        private final int N;
         private Node root;
 
 
@@ -78,7 +78,7 @@ public class BPlusTree<Key extends Comparable, Value> {
 
                 Queue<Node> queue = new LinkedList<>();
                 queue.add(root);
-                Queue<Value> q2 = new LinkedList<>();
+
                 int h = 0;
                 while (!queue.isEmpty()){
                         System.out.println("h = " + h++);
@@ -101,7 +101,7 @@ public class BPlusTree<Key extends Comparable, Value> {
                                         LNode ln = (LNode) n;
                                         for (int j = 0; j < ln.num; j++) {
                                                 System.out.print(ln.keys[j] + " ");
-                                                q2.add(ln.values[j]);
+
                                         }
                                         System.out.print(" | ");
                                 }
